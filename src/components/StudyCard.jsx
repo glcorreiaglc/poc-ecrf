@@ -8,7 +8,7 @@ export default function StudyCard({ study }) {
 
   return (
     <Link href={`/study/${study.id}`}>
-      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer">
+      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
         <h3 className="text-xl font-semibold text-gray-900 mb-2">
           {study.name}
         </h3>
