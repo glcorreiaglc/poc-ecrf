@@ -21,6 +21,9 @@ model Study {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // Relations
+  inclusions StudyInclusion[]
+
   @@map("studies")
 }
 
@@ -34,6 +37,23 @@ model Subject {
   phone       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
+  // Relations
+  inclusions StudyInclusion[]
+
   @@map("subjects")
+}
+
+model StudyInclusion {
+  id        String   @id @default(cuid())
+  studyId   String
+  subjectId String
+  createdAt DateTime @default(now())
+
+  // Relations
+  study   Study   @relation(fields: [studyId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@unique([studyId, subjectId])
+  @@map("study_inclusions")
 }
